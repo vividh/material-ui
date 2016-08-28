@@ -3,11 +3,14 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { pure } from 'recompose';
 
 export const styleSheet = createStyleSheet('Text', (theme) => {
   const { typography } = theme;
   return {
-    text: { display: 'block' },
+    text: {
+      display: 'block',
+    },
     display4: typography.display4,
     display3: typography.display3,
     display2: typography.display2,
@@ -30,7 +33,7 @@ export const styleSheet = createStyleSheet('Text', (theme) => {
   };
 }, { index: 5 });
 
-export default class Text extends Component {
+class Text extends Component {
   static propTypes = {
     align: PropTypes.string,
     children: PropTypes.node,
@@ -68,3 +71,5 @@ export default class Text extends Component {
     return React.createElement(component, { className, ...other });
   }
 }
+
+export default pure(Text);
