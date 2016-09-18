@@ -30,6 +30,10 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
         backgroundColor: palette.text.divider,
       },
     },
+    compact: {
+      padding: '0 8px',
+      minWidth: 64,
+    },
     disabled: {
       opacity: 0.4,
     },
@@ -113,6 +117,10 @@ export default class Button extends Component {
      */
     className: PropTypes.string,
     /**
+     * Uses a smaller minWidth, ideal for things like card actions
+     */
+    compact: PropTypes.bool,
+    /**
      * The element or component used for the root node.
      */
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
@@ -169,6 +177,7 @@ export default class Button extends Component {
       accent,
       children,
       className: classNameProp,
+      compact,
       disabled,
       fab,
       primary,
@@ -186,6 +195,7 @@ export default class Button extends Component {
       [classes.accent]: flat && accent,
       [classes.raisedPrimary]: !flat && primary,
       [classes.raisedAccent]: !flat && accent,
+      [classes.compact]: compact,
       [classes.disabled]: disabled,
     }, classNameProp);
 

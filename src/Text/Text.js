@@ -10,6 +10,7 @@ export const styleSheet = createStyleSheet('Text', (theme) => {
   return {
     text: {
       display: 'block',
+      margin: 0,
     },
     display4: typography.display4,
     display3: typography.display3,

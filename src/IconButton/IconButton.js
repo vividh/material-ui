@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('IconButton', (theme) => {
-  const { palette } = theme;
   return {
     root: {
       display: 'inline-flex',
@@ -22,7 +21,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       backgroundColor: 'transparent',
       color: 'inherit',
       zIndex: 1,
-      transition: theme.transitions.create('background-color', '150ms'),
+      transition: theme.transition,
     },
     label: {
       width: '100%',
@@ -31,16 +30,23 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       justifyContent: 'inherit',
     },
     keyboardFocused: {
-      backgroundColor: theme.palette.text.divider,
+      backgroundColor: theme.focusBackground,
     },
     primary: {
-      color: palette.primary[500],
+      color: theme.primary[500],
     },
     accent: {
-      color: palette.accent.A200,
+      color: theme.accent.A200,
     },
   };
 }, { index: 2 });
+
+styleSheet.registerLocalTheme((theme) => ({
+  primary: theme.palette.primary,
+  accent: theme.palette.accent,
+  transition: theme.transitions.create('background-color', '150ms'),
+  focusBackground: theme.palette.text.divider,
+}));
 
 /**
  * @see https://material.google.com/components/buttons.html

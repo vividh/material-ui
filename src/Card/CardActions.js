@@ -3,18 +3,20 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { cloneChildrenWithClassName } from '../utils/react';
 
 export const styleSheet = createStyleSheet('CardActions', () => ({
   cardActions: {
-    padding: [8, 4],
-    '&:last-child': {
-      paddingBottom: 24,
-    },
+    padding: '8px 4px',
+  },
+  cardAction: {
+    margin: '0 4px',
   },
 }), { index: 10 });
 
 export default function CardActions(props, context) {
   const {
+    children,
     className: classNameProp,
     ...other,
   } = props;
@@ -23,11 +25,14 @@ export default function CardActions(props, context) {
   const className = classNames(classes.cardActions, classNameProp);
 
   return (
-    <div className={className} {...other} />
+    <div className={className} {...other}>
+      {cloneChildrenWithClassName(children, classes.cardAction)}
+    </div>
   );
 }
 
 CardActions.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
 };
 
