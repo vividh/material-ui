@@ -32,7 +32,7 @@ export const styleSheet = createStyleSheet('Text', (theme) => {
       whiteSpace: 'nowrap',
     },
   };
-}, { index: 5 });
+}, { index: -10 });
 
 class Text extends Component {
   static propTypes = {

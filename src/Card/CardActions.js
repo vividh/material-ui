@@ -12,7 +12,7 @@ export const styleSheet = createStyleSheet('CardActions', () => ({
   cardAction: {
     margin: '0 4px',
   },
-}), { index: 10 });
+}), { index: -5 });
 
 export default function CardActions(props, context) {
   const {

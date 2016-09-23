@@ -7,7 +7,7 @@ import Text from '../Text';
 
 export const styleSheet = createStyleSheet('CardHeader', () => ({
   cardHeader: {},
-}), { index: 10 });
+}), { index: -5 });
 
 export default function CardHeader(props, context) {
   const {

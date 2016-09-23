@@ -76,6 +76,10 @@ export default class IconButton extends Component {
      * If false, the ripple effect will be disabled.
      */
     ripple: PropTypes.bool,
+    /**
+     * @ignore
+     */
+    theme: PropTypes.object,
   };
 
   static defaultProps = {
@@ -87,8 +91,8 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const { children, className, ...other } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
+    const { children, className, theme, ...other } = this.props;
+    const classes = this.context.styleManager.render(styleSheet, theme);
     return (
       <ButtonBase
         className={classNames(classes.root, className)}
