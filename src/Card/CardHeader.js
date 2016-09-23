@@ -11,6 +11,7 @@ export const styleSheet = createStyleSheet('CardHeader', () => ({
 
 export default function CardHeader(props, context) {
   const {
+    avatar,
     className: classNameProp,
     subhead,
     title,
@@ -29,6 +30,7 @@ export default function CardHeader(props, context) {
 }
 
 CardHeader.propTypes = {
+  avatar: PropTypes.node,
   className: PropTypes.string,
   subhead: PropTypes.string,
   title: PropTypes.string,
