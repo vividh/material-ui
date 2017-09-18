@@ -1,4 +1,5 @@
-import React, {Component, PropTypes, cloneElement} from 'react';
+import React, {Component, cloneElement} from 'react';
+import PropTypes from 'prop-types';
 import IconButton from '../IconButton';
 import NavigationMenu from '../svg-icons/navigation/menu';
 import Paper from '../Paper';
@@ -153,10 +154,10 @@ class AppBar extends Component {
   };
 
   componentDidMount() {
-    warning(!this.props.iconElementLeft || !this.props.iconClassNameLeft, `Properties iconElementLeft
+    warning(!this.props.iconElementLeft || !this.props.iconClassNameLeft, `Material-UI: Properties iconElementLeft
       and iconClassNameLeft cannot be simultaneously defined. Please use one or the other.`);
 
-    warning(!this.props.iconElementRight || !this.props.iconClassNameRight, `Properties iconElementRight
+    warning(!this.props.iconElementRight || !this.props.iconClassNameRight, `Material-UI: Properties iconElementRight
       and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`);
   }
 
@@ -196,7 +197,7 @@ class AppBar extends Component {
       style,
       zDepth,
       children,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -210,7 +211,7 @@ class AppBar extends Component {
     const titleComponent = typeof title === 'string' || title instanceof String ? 'h1' : 'div';
 
     const titleElement = React.createElement(titleComponent, {
-      onTouchTap: this.handleTitleTouchTap,
+      onClick: this.handleTitleTouchTap,
       style: prepareStyles(Object.assign(styles.title, styles.mainElement, titleStyle)),
     }, title);
 
@@ -231,8 +232,8 @@ class AppBar extends Component {
           iconElementLeftProps.iconStyle = Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle);
         }
 
-        if (!iconElementLeft.props.onTouchTap && this.props.onLeftIconButtonTouchTap) {
-          iconElementLeftProps.onTouchTap = this.handleTouchTapLeftIconButton;
+        if (!iconElementLeft.props.onClick && this.props.onLeftIconButtonTouchTap) {
+          iconElementLeftProps.onClick = this.handleTouchTapLeftIconButton;
         }
 
         menuElementLeft = (
@@ -248,7 +249,7 @@ class AppBar extends Component {
             style={iconLeftStyle}
             iconStyle={styles.iconButtonIconStyle}
             iconClassName={iconClassNameLeft}
-            onTouchTap={this.handleTouchTapLeftIconButton}
+            onClick={this.handleTouchTapLeftIconButton}
           >
             {iconClassNameLeft ?
               '' :
@@ -287,8 +288,8 @@ class AppBar extends Component {
         default:
       }
 
-      if (!iconElementRight.props.onTouchTap && this.props.onRightIconButtonTouchTap) {
-        iconElementRightProps.onTouchTap = this.handleTouchTapRightIconButton;
+      if (!iconElementRight.props.onClick && this.props.onRightIconButtonTouchTap) {
+        iconElementRightProps.onClick = this.handleTouchTapRightIconButton;
       }
 
       menuElementRight = (
@@ -304,7 +305,7 @@ class AppBar extends Component {
           style={iconRightStyle}
           iconStyle={styles.iconButtonIconStyle}
           iconClassName={iconClassNameRight}
-          onTouchTap={this.handleTouchTapRightIconButton}
+          onClick={this.handleTouchTapRightIconButton}
         />
       );
     }

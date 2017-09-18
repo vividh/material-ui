@@ -1,10 +1,11 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Divider = (props, context) => {
   const {
     inset,
     style,
-    ...other,
+    ...other
   } = props;
 
   const {

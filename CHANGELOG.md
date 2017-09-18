@@ -1,31 +1,709 @@
-## HEAD (v0.16.0)
+## HEAD
 
-We have **shifted goals** for `v0.16.0`.
-Across a number of issues over the last ~5 months we have been telling people that certain improvements are coming in `v0.16.0` ranging from performance to component API issues and more.
-Those improvement are coming with the `next` branch.
-We are switching in goal so we can release changes more **often**.
+## 0.19.1
+###### _Sep 2, 2017_
 
-##### Breaking Changes
-
+Big thanks to the 7 contributors who made this release possible.
 
 ##### Component Fixes / Enhancements
 
+- [Popover] Fix PopOver animation origin when targetOrigin.horizontal=middle (#7930) @tsholmes
+- [Slider] Resolve slider value to respect max and min (#7863) @janmarsicek
+- [IconMenu] Stop preventing event default on open (#7933) @DoloMike
+- [AutoComplete] Fix bug where controlled component behaves uncontrolled (#7967) @djblue
+- [Tabs] Fix InkBar location for controlled component (#8010) @jgreubel
+
+##### Docs
+
+- [Autocomplete] Fix onNewRequest documentation (#7835) @baerrach
+
+##### Core
+
+N.A
+
+## 0.19.0
+###### _Aug 15, 2017_
+
+Big thanks to the 11 contributors who made this release possible.
+As always, we are focusing on bug fixes but this time, we introduce an exceptional breaking change.
+
+##### Breaking Changes
+
+- [core] Removed module's reliance on react-tap-event-plugin (#7624) @lostpebble
+
+The `react-tap-event-plugin` dependency was removed.
+This change is paving the way toward supporting the upcoming react@16 release a.k.a Fiber.
+The `react-tap-event-plugin` dependency was first introduced 3 years ago in order to remove
+the click delay on mobile devices.
+Mobiles devices' browsers have improved since then, it's no longer required.
+It's time to remove that dependency as we have done it a year ago on the `v1-beta` branch.
+You need to replace the `onTouchTap` property callbacks with `onClick`.
+
+```diff
+-<div onTouchTap={this.handleEvent} />
++<div onClick={this.handleEvent} />
+```
+
+Thanks @lostpebble for your hard work!
+
+##### Component Fixes / Enhancements
+
+- [EnhancedSwitch] Fix checked prop (#7499) @LeoIannacone
+- [Table] Row click on empty cell to not die in IE (#7520) @Brianzchen
+- [Popover] Fix unknown "scrollableContainer" prop warning (#7560) @husterk
+- [Popover] Fixed bug where Popover renders relative to screen (#7663) @lostpebble
+- [Menu] Broken touch scroll on nested menu items (#7557 @adam187
+- [DatePicker] Fix bug where 'isSelectedDateDisabled' was returning undefined (#7735) @lostpebble
+
+##### Docs
+
+- [docs] Update ROADMAP (#7543) @kgregory
+- [docs] Replace deprecated babel-plugin-material-ui with babel-plugin-direct-import (#7706) @umidbekkarimov
+- [docs] Fix comment typo (#7523) @ruffle1986
+- [examples] Remove browserify @oliviertassinari (0cb504cf830abd805c1a7699f828bf5b0a6c23be)
+- [docs] added showcase of 'HoopHubs.com' (#7677) @ngxiaoyi
+- [docs] Create CODE_OF_CONDUCT.md (#7704) @oliviertassinari
+
+##### Core
+
+- [core] Add react^16.0.0-beta.5 in peer dependencies @oliviertassinari (8032d51c3faf4ddc5bcf814c9458fbc227a083e2)
+
+## 0.18.7
+###### _Jul 23, 2017_
+
+Big thanks to the 11 contributors who made this release possible.
+As always, we are focusing on bug fixes.
+
+##### Component Fixes / Enhancements
+
+- [Table] Don't set height to tbody (#7484) @GAumala
+- [Popover] Scroll Container issue (#7472) @gorkemcnr
+- [ListItem] Fix triggers onTouchTap when disabled (#7486) @jonashartwig
+- [Chip] Fix warning when using onRequestDelete (#7407) @leMaik
+- [Datepicker] Option to select year first (#7367) @chrisjbrown
+- [List] Fix clicking "Toggle Nested Items" icon triggering left checkbox toggle (#7171) @hwo411
+
+##### Docs
+
+- [ROADMAP] Update the release plan for v1: fasteeer (#7428) @oliviertassinari
+- [docs] Update ROADMAP.md with v1-alpha branch (#7345) @whyvez
+- [docs] Update CONTRIBUTING.md with v1-alpha branch (#7371) @akshaynaik404
+- [docs] Fix typo in Avatar (#7478) @brianlheim
+
+##### Core
+
+N.A
+
+## 0.18.6
+###### _Jul 4, 2017_
+
+Big thanks to the 7 contributors who made this release possible.
+As always, we are focusing on bug fixes.
+
+##### Component Fixes / Enhancements
+
+- [Chip] Support overriding Delete Icon Style (#7320) @zentron
+- [AutoComplete] Fix issue with popover positioning on iOS (#7333) @mattp94
+- [ListItem] Apply paddingRight to automatic expand icon (#7313) @thehig
+- [DatePicker] Use the same background color as the TimePicker (#7295) @R4DIC4L
+- [TextField] Fix unfocused state when disabled (#7283) @xaviergonz
+
+##### Docs
+
+- [docs] Fix v1 promo styling (#7289) @KenLSM
+
+##### Core
+
+N.A
+
+## 0.18.5
+###### _Jun 28, 2017_
+
+##### Component Fixes / Enhancements
+
+- Fix regressions (#7262) @oliviertassinari
+- [TextField] Fix initial scroll (#7260) @brendanmh
+
+##### Docs
+
+- [docs] Promote the v1.0.0-alpha (#7273) @oliviertassinari
+
+##### Core
+
+- [tests] correct values expected by autoprefixer (#7267) @djbuckley
+
+## 0.18.4
+###### _Jun 25, 2017_
+
+Big thanks to the 17 contributors who made this release possible.
+This release keeps focusing on bug fixes.
+
+##### Component Fixes / Enhancements
+
+- [TextField] Replaced WebkitTextFillColor with WebkitOpacity (#7094) @midan888
+- [TextField] Fix for bottom border color reset (#7114) @xaviergonz
+- [Tab] Support SVG Icons color (#7091) @RejinR
+- [Tab] Fix color property handling (#7131) @oliviertassinari
+- [DatePicker] Fix direction in RTL (#7102) @azizghuloum
+- [ListItem] Exposing onTouchTap API in order to address Issue #6938 (#7105) @max-b
+- [Dialog] Styling inner content container (component Paper) (#7123) @akulov
+- [Switch] Fix focus style for RadioButton Checkbox Toggle (#7158) @myrubapa
+- [Popover] Only prevent default click interactions (#7167) @oliviertassinari
+- [Drawer] Remove event listeners on unmount (#7225) @liamcmitchell
+- [Table] state.allRowsSelected was not updated if props.allRowsSelected changed (#7224) @lgpasquale
+- [Slider] Prevent unnecessary value spread (#7191) @katzoo
+
+##### Docs
+
+- [Paper] Properties circle has typo misspelling (#7245) @lisabronwyn
+- [docs] Add material-ui-slider-label in the related projects section (a0ab405cc5d4a101735defbc68ec1b80659a8230) @tariqwest
+- [docs] Add Crypticker.io in showcase (#7205) @scastiel
+- [docs] Fix item 4 not showing as checked in Table controlled example (#7244) @bjornreppen
+- [docs] Humorista Showcase App No Longer Working (#7164) @Dcorkran
+
+##### Core
+
+N.A
+
+## 0.18.3
+###### _Jun 8, 2017_
+
+##### Component Fixes / Enhancements
+
+- [DatePicker] Revert #7056 (3d841bd1443c375c32d7ff696011dc9f131d4d13) @oliviertassinari
+- [TextField] Fix disabled input color in Safari (#7065) @amannn
+
+## 0.18.2
+###### _Jun 7, 2017_
+
+Big thanks to the 22 contributors who made this release possible.
+This release keeps focusing on bug fixes.
+
+##### Component Fixes / Enhancements
+
+- [CardTitle] Don't pass closeIcon to parent div (#6868) @ChrisJamesC
+- [DatePicker] Now the date passed to DateTimeFormat is always in UTC (#7056) @JustAndrei
+- [DatePicker] Revert #6764 (#6930) @oliviertassinari
+- [Drawer] Fix behavior on RTL layouts (#6857) @alireza-ahmadi
+- [Drawer] Fix for server side rendering (#6929) @pablo-bondacom
+- [DropDownMenu] Add child argument to selectionRenderer (#6890) @Floriferous
+- [DropDownMenu] Add tests for selectionRenderer (#6895) @Floriferous
+- [Menu] Fix RegExp error on keydown (#6965) @liamcmitchell
+- [Stepper] Add expandTransitionChildStyle property (#7030) @makslevental
+- [TableBody] Fix columnId passed to onCellClick (#7014) @lgpasquale
+- [TextField] Fix enter behavior with multiline when controlled (#6992) @sajal50
+- [TimePicker] Add minutes step prop (#6942) @alancasagrande
+
+##### Docs
+
+- [Card] Add alt property for img tag (#7022) @juzhiyuan
+- [docs] Add React Most Wanted to the showcase (#7032) @TarikHuber
+- [docs] Add a new site to the showcase (#6993) @wzup
+- [docs] Add Razzle Styled Example (#6862) @kireerik
+- [docs] Add brainbok to the showcase (#6983) @brainbok
+- [docs] Add https://devsketch.io to showcase (#6908) @hailedev
+- [AutoComplete] fixing a typo in docs - "reseted" -> "reset" (#6919) @mbifulco
+
+##### Core
+
+- [core] Remove ReactFragment dependency (#6910) @made-aryadinata
+
+## 0.18.1
+###### _May 13, 2017_
+
+##### Component Fixes / Enhancements
+
+- [Dialog] Improves borders behavior when scrollable (#6576) @bognix
+- [Slider] Fix step & max issue (#6752) @omarchehab98
+- [Slider] Fix `isRtl` behaviour `directionInvariant` approach (#6760) @omarchehab98
+- [TextField] Fix a warning of 'Failed prop type' (#6773) @szchenghuang
+- [TextField] Accessibility fix for horizontal rules (#6796) @charliegroll
+- [DatePicker] Call dismiss when handleTouchTapOk triggers (#6764) @NewOldMax
+- [Table] Handle 0 or 1 rows within the header (#6813) @DaIgeb
+- [Autocomplete] Fix handle open prop change (#6809) @jony89
+- [SelectField] Remove use of `.includes()` to support IE11 (#6838) @codylawson
+- [Slider] Remove deprecated error and description props (#6851) @solkaz
+
+##### Core
+
+- [core] Fix breaking change "recompose" version dependency (#6847) @eduardomb
+- React 16 compatibility (#6753) @made-aryadinata
+
+## 0.18.0
+###### _Apr 30, 2017_
+
+Big thanks to the 8 contributors who made this release possible.
+This release almost exclusively contains bug fixes.
+
+##### Breaking Changes
+
+- [Table] Fix controlled behavior (#6638) @oliviertassinari
+
+This PR is introducing a breaking change by removing the ambiguity between default state and controlled state. Now, as soon as the selected property is used, the row selection of the component is controlled, hence fully implementing what's documented:
+
+> `selected`: This property can be used to programmatically select rows.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Fix overriding TextField value and onChange prop (#6642) @umidbekkarimov
+- [AutoComplete] Fix undesired behaviour with controlled searchText (#6621) @NickMalt
+- [Stepper] Allow single Step child (#6707) @StephanBijzitter
+- [style] Use 'default' cursor for disabled component states (#6700) @demigor
+- [DropDownMenu] Pass autoWidth property to Menu component (#6632) @BamaBoy
+- [Menu] Fix focus index when multiselect is used (#6717) @jony89
+- [Tabs] Fix transition when isRtl is used (#6737) @jony89
+
+##### Docs
+
+- [docs] Upgrade react-docgen (#6635) @mbrookes
+- [Slider] Add a logarithmic scale example (#6672) @idoco
+
+## 0.17.4
+###### _Apr 14, 2017_
+
+Big thanks to the 5 contributors who made this release possible.
+Following [React's announcement](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html) that includes the deprecation of some pattern, we have updated the codebase in order to support the latest v15.5.4 release of React.
+Thanks @rsolomon for taking care of it!
+
+##### Component Fixes / Enhancements
+
+- [SelectField] Add dropDownMenuProps property (c3ee8e88d1a8abb399d44b73bd3214883ccccd7a) @viniciusdcc
+- [CardActions] Fix showExpandableButton bug (#6578) @akshaynanavati
+- [DatePicker] Customizable calendar system (#6565) @alitaheri
+
+#### Core
+
+- [react] Use React 15.5 and prop-types lib (#6577) @rsolomon
+
+## 0.17.3
+###### _Apr 10, 2017_
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Fix overriding TextField event props (#6561) @leMaik
+- [DropDownMenu] Fix the position regression (8829a9d78abedca5de80617448cb99968650c30e) @oliviertassinari
+
+## 0.17.2
+###### _Apr 9, 2017_
+
+Big thanks to the 21 contributors who made this release possible.
+
+This release includes the update of the dependencies.
+The latest release of `inline-style-prefixer` is introducing **significant** [performance improvements](https://github.com/rofrischmann/inline-style-prefixer/blob/master/Changelog.md#30) to our styling solution.
+
+[Latest React's announcement](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html) includes a deprecation of `React.PropTypes` and an introduction of a new package `prop-types`. We don't support that change yet, any help is welcome.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Fix menuProps and text props override defaults (#6497) @susielu
+- [AutoComplete] Document menuProps property (#6443) @tanhauhau
+- [AppBar] Add test for iconElementRight gets FlatButton (#6362) @agamrafaeli
+- [Drawer] Allowing percentages width (#6315) @janzenz
+- [DropDownMenu] Expose targetOrigin and anchorOrigin properties (#6370) @qin9smile
+- [EnhancedTextArea] Fixes height bug for IE11 (#6418) @mmrtnz
+- [GridTile] Add a subtitleStyle property (#6421) @ichi0g0y
+- [ListItem] Add isKeyboardFocused prop (#6369) @samdroid-apps
+- [Menu] Add attributes to support assistive technologies (#6539) @170102
+- [TextField] Fix first character composition issue (#6456) @keifuji
+- [TextField] Fix wrapped hintText rendering outside of container (#6305) @pancho111203
+- [ToolbarGroup] Add more tests for other child components (#6423) @ibekavac
+
+##### Docs
+
+- [ROADMAP] Add a link to the next documentation (b0461d944ccaee877358cad7173d2a9fbba19edf) @oliviertassinari
+- [docs] Add Electrode to related projects (#6441) @mbrookes
+- [docs] Add related project material-ui-scrollable-tabs (#6429) @shawnmcknight
+- [docs] Show how to change the RadioButton color (133da2f10592cf5d26c76248840b790783623886) @oliviertassinari
+- [Showcase] Add Flow Dashboard to showcase (#6380) @onejgordon
+- [Showcase] Update Slimchess Url (#6348) @larrxu
+- [Showcase] Add Serif.nu to showcase (#6399) @Joonpark13
+- [TableRow] Fix typo in comment (#6428) @beaudry
+
+##### Core
+
+- [npm] Upgrade dependencies (#6343) @oliviertassinari
+
+## 0.17.1
+###### _Mar 12, 2017_
+
+Big thanks to the 20 contributors who made this release possible.
+
+##### Component Fixes / Enhancements
+
+- [Chip] Add containerElement property (#6237) @blmarket
+- [DatePicker] Add option to hide date display (#6161) @dhoward
+- [EnhancedButton] Speed up unmount (#6164) @fzaninotto
+- [EnhancedSwitch] Remove dead "toggled" property (#6182) @Shahrukh-Zindani
+- [FlatButton] Add fullWidth property (#6135) @Shahrukh-Zindani
+- [FloatingActionButton] Fix disabledColor warning in console (#6178) @Shahrukh-Zindani
+- [MenuItem] Add an anchorOrigin property for the nested items (#6079) @skylerfenn
+- [Menu] Fix disabled MenuItem with props.menuItemStyle (#6203) @tomchentw
+- [LinearProgress] Reduce delay before indeterminate animation begins (#6230) @lawrence-yu
+- [SelectField] Fix TouchRipple effect when SelectField is disabled (#6286) @solkaz
+- [SelectField][DropDownMenu] Prevent label from resizing parents (#6200) @JessThrysoee
+- [SelectField][DropDownMenu] Support multi select (#6165) @JessThrysoee
+- [TextField] sync height with shadow when `rowsMax` changed (#6297) @seasick
+- [Theme] Move borderRadius into a theme constant (#6233) @samdroid-apps
+- [Toolbar] Allow node to be used in text property (#6282) @oliviertassinari
+
+##### Docs
+
+- [Button] Expose disableTouchRipple (#6234) @oshalygin
+- [FlatButton] Add className property (#6148) @Shahrukh-Zindani
+- [ListItem] Documents containerElement, changes ref to use callback (#6204) @lourd
+- [Showcase] Add SlimChess to showcase (#6225) @larrxu
+- [docs] Add onTouchTap documentation for FlatButton (#6147) @Shahrukh-Zindani
+- [docs] Add onTouchTap documentation for FloatingActionButton (#6172) @Shahrukh-Zindani
+- [docs] Add onTouchTap documentation for IconButton (#6174) @Shahrukh-Zindani
+- [docs] Add onTouchTap documentation for RaisedButton (#6171) @Shahrukh-Zindani
+- [docs] Add explanation for using font icon in a local project (#6198) @Shahrukh-Zindani
+- [docs] Add documentation for containerElement in FlatButon (#6210) @Shahrukh-Zindani
+- [docs] Add documentation for containerElement in RaisedButon (#6199) @Shahrukh-Zindani
+- [docs] Update usage.md (#6207) @dhruvdutt
+- [docs] Add a link to clarify the use of font icons in IconButton (#6197) @Shahrukh-Zindani
+- [docs] Update ROADMAP.md (#6319) @antmdvs
+
+##### Core
+
+- [issue] Update the webpackbin link (18e9c494e0c5c331b1e949856f2dbe8c77b62c77) @oliviertassinari
+
+
+## 0.17.0
+###### _Feb 12, 2017_
+
+Big thanks to the 17 contributors who made this release possible.
+
+##### Breaking Changes
+
+- [core] Upgrade react-tap-event-plugin and react peer dependency (#6057) @rosskevin
+
+We have upgraded the peer dependency of Material-UI. You gonna need:
+- `react-tap-event-plugin` >= 2.0.1
+- `react` >= 15.4.0
+- `react-dom` >= 15.4.0
+
+##### Component Fixes / Enhancements
+
+- [Tooltip] Add support for horizontalPosition="right" (#6072) @LeeKevin
+- [RadioButton] Fix circular dependency (#6055) @joaogranado
+- [Stepper] Add font family from base theme (#5943) @ysds
+- [Popover] Fix re-opening animated popover (#5984) @kib357
+- [EnhancedButton] Fix bleeding animation (#6027) @ArcanisCz
+- [DropDownMenu] Allow custom FontIcon child (#6028) @ArcanisCz
+
+##### Docs
+
+- [docs] Fix typo for the Divider's page (#6085) @meganetaaan
+- [docs] Add rating component to related-projects (#6018) @saschb2b
+- [docs] Add a chrome extension example to the showcase (#5994) @xinghengwang
+- [docs] Add source-code IconButton to Showcase (#5980) @mbrookes
+- [docs] Fix FlatButton example Firefox behavior (#5933) @MustD
+- [docs] Update Flat/Raised Button with SVG's description (#5981) @oshalygin
+- [Toggle] Update docs (#5941) @GusRuss89
+
+##### Core
+
+- [core] Fix npm scripts for windows - proper cross-env (#6086) @ArcanisCz
+- [eslint] Fix errors & warnings & deprecations (#6030) @ArcanisCz
+- [colorManipulator] Add warning to decomposeColor (#5939) @gyfis
+
+## 0.16.7
+###### _Jan 15, 2017_
+
+Big thanks to the 20 contributors who made this release possible.
+
+##### Component Fixes / Enhancements
+
+- [DropDownMenu] Add keyboard accessibility (#5921) @caesay
+- [EnhancedButton] Remove unnecessary hack, improving overall performance (#5868) @jampy
+- [FloatingActionButton] Fix thin white border (#5881) @ludoviccyril
+- [IconButton] Fix a onTouchStart error (#5833) @oliviertassinari
+- [IconButton] Fix hoveredStyle prop override style prop (#5874) @MattCain
+- [IconMenu] Fix React warning (#5843) @olee
+- [Menu] Add onFocusIndexChange property (#5851) @gabrielmdeal
+- [Menu] Fix support of any type of children (#5904) @oliviertassinari
+- [style] Shorthand syntax for a color object (#5835) @frooeyzanny
+- [style] Fix user-agent all with display flex (#5931) @oliviertassinari
+- [Tab] Allow overriding button style on tabs (#5844) @rhagigi
+- [Tabs] Fix a regression (#5891) @oliviertassinari
+- [Table] Add an integration tests (#5845) @oliviertassinari
+- [Table] Fix TableBody selectedRows state (#5829) @ovaldi
+- [Table] Remove useless padding (#5932) @oliviertassinari
+- [TableBody] Fix row selection re-render (#5905) @dchambers
+- [test] Fix typo in the iOSHelpers.spec.js (#5837) @frooeyzanny
+
+##### Docs
+
+- [docs] Add payment components to Related projects (#5849) @lorensr
+- [docs] Add showcase for "humorista.org" (#5859) @minas1
+- [docs] Fix broken link (b7d9a373320b49f62e47f4e2e5ca4aa882265904) @oliviertassinari
+- [docs] Fix spelling mistake in PropTypeDescription.js (#5883) @Jbarget
+- [docs] Fix typo (#5889) @lucasbento
+- [docs] It is exciting (#5831) @ratson
+- [Tabs] Fix typo in initialSelectedIndex prop description (#5923) @neonray
+- [withWidth] Fix typo in the withWidth.spec.js (#5836) @frooeyzanny
+
+##### Core
+
+- [test] Use simpler assert API (e017d365f45b07933e8b896f95d6d1455b666516) @oliviertassinari
+
+## 0.16.6
+###### _Dec 25, 2016_
+
+We are releasing sooner than we use to for this **special day** :christmas_tree::gift:.
+17 contributors are making that last release of the year possible.
+
+2016 has been an exceptional year for Material-UI.
+- We went from 40k to 180k [downloads](https://npm-stat.com/charts.html?package=material-ui&from=2014-12-24&to=2016-12-25) a month. :package:
+- We went from 12k to 22k [stars](http://www.timqian.com/star-history/#callemall/material-ui). :star:
+
+That wouldn't have been possible without this awesome community.
+**Thank you!**
+
+But this's just the beginning, some [exciting stuff](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) is coming in 2017 :sparkles:.
+You can preview a **very early** version of the `next` branch following [that link](https://material-ui-1dab0.firebaseapp.com).
+
+##### Component Fixes / Enhancements
+
+- [IconButton] Add a hoveredStyle property (#5755)
+- [Menu] Add a dividerStyle property (#5734)
+- [Menu][DropDownMenu][SelectField] Add menuItemStyle and menuItemSelectedStyle properties (#5389)
+- [Popover] Fix ghost clicks in onRequestClose (#5749)
+- [Popover] Fix bad positioning on IOS devices (#4638)
+- [Popover] Revert the latest PR following a regression (#5797)
+- [Stepper] Allow custom step connector (#5741)
+- [Stepper] Fix content container's height expantion (#5733)
+- [TimeDisplay] Inherit text color from theme (#5816)
+- [TouchRipple] Fix issue #5626 (#5763)
+
+##### Docs
+
+- [AutoComplete] Add a controlled example (#5795)
+- [Slider] Add onChange callback signatures to docs (#5760)
+- [TextField] Add callback signatures to docs (#5804)
+- [docs] Add link to babel-plugin-material-ui (#5754)
+- [docs] Node is written mostly in C++, not in C (#5776)
+- [docs] Remove redundant words (#5778)
+- [docs] Add showcase item - Realty Advisors Elite (#5806)
+
+##### Core
+
+- [core] Add support for Webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
+
+## 0.16.5
+###### _Dec 9, 2016_
+
+This is another release improving the stability of `v0.16.x`.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Add an onClose callback property (#5655)
+- [AutoComplete] Fix the controlled behavior (#5685)
+- [DatePicker] Auto switch the view when a year is selected (#5700)
+- [DropDownMenu] Add an onClose callback property (#5653)
+- [DropDownMenu] Do not wrap below dropdown menu (#4755)
+- [EnhancedButton] Fix an accessibility issue (#5657)
+- [EnhancedButton] Only apply type when needed (#5728)
+- [IconMenu] Add listStyle prop (#5630)
+- [IconMenu] Fix controlled IconMenus to honor onRequestChange (#5704)
+- [MenuItem] Add right padding when there is icon (#4762)
+- [Popover] Add the missing zIndex (#5730)
+- [List] Fix padding styles object (#5661)
+- [SelectField] Scroll wheel event bubbling to parent container (#4154)
+- [StepLabel] Address a box model issue (#5690)
+- [SelectField] Add listStyle prop (#5631)
+- [TextField] Fix errorStyle priority (#5654)
+- [TextField] Add a floatingLabelShrinkStyle property (#5669)
+- [autoprefixer] Fix a style issue with user agent all and display flex (#5668)
+- [makeSelectable] Fix missing check for existence of onChange (#5589)
+
+##### Docs
+
+- [docs] Add a Q&A section around the next branch (#5718)
+- [docs] Fix typo with sentence for AutoComplete (#5596)
+- [docs] Fix origin documentation (#5676)
+- [docs] Fix Linear Progress Prop Documentation (#5680)
+- [docs] Fix a scroll issue on (iOS) (a12dca847af6833dbf671e48c736047d6909ec53)
+
+##### Core
+
+- [core] Apply 3 different fixes (#5695)
+
+## 0.16.4
+###### _Nov 17, 2016_
+
+##### Component Fixes / Enhancements
+
+- [npm] Rollback the react dependency path to `v15.0.0` (417913e41fbc3366c6997258263270c6d7465c1a)
+
+## 0.16.3
+###### _Nov 17, 2016_
+
+This release is intended to solve an [issue](https://github.com/callemall/material-ui/issues/5573) with `react-tap-event-plugin` following the release of React `v15.4.0`.
+
+##### Component Fixes / Enhancements
+
+- [ListItem] Fix hover on touch devices (#5566)
+- [core] include `react-tap-event-plugin@^2.0.0` for `react@^15.4.0` (#5572)
+- [core] Add support for Webpack 2/Rollup tree shaking (#5545)
+
+##### Docs
+
+- [docs] Upgrade React to v15.4.0 (#5575)
+
+## 0.16.2
+###### _Nov 13, 2016_
+
+This is another release improving the stability of `v0.16.x` while we are working on get `next` out of the door.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Fire onUpdateInput when an item from the dropdown is selected (#5518)
+- [AutoComplete] Fix Popover's style overriding popoverProps (#5516)
+- [Card] Add closeIcon and openIcon for customizability (#5513)
+- [FloatingActionButton] Fix regression with n children (#5468)
+- [GridList] Add the support for cellHeight="auto" (#5452)
+- [GridTitle] Add a titleStyle property (#5535)
+- [IconMenu] Change IconMenu to conditionally merge button styles (#5496)
+- [IE] Remove the unsupported initial property (#5539)
+- [MenuItem][ListItem] Allow overriding hoverColor (#5502)
+- [ListItem] Fix an issue with the controlled behavior (#5514)
+- [ListItem] Clear hover state if componet get's disabled (#5528)
+- [Popover] Fix support for invalid `anchorEl` (#5444)
+- [RaisedButton] Fix hover on touch devices (#5536)
+- [Stepper] Fix children count method (#5429)
+- [Stepper] Add iconContainerStyle to StepButton and StepLabel (#5507)
+- [Tabs] Fix Firefox height issue (bf25bc118523b359bba5a5540205174a1c2d9e27)
+- [Table] Warning on rendering attempt of unsupported child (#5520)
+- [TextField] Add ability to style label color when a value is present (#5490)
+- [TextField] Fix wrong style behing applied to div elements (#5446)
+- [TextField] Fix floatingLabelFocusStyle when floatingLabelFixed is true (#5487)
+- [TextField] Remove the isClean logic (#5540)
+- [TimePicker] Fix `autoOk` closing the dialog too early (#5511)
+- [ToolbarGroup] Fix vertical alignment (#5515)
+- [ToolbarTitle] Take font family from base theme (#5434)
+- [Toggle] Fix label propTypes from `string` to `node` (#5474)
+
+##### Core
+
+- [npm] Upgrade the dependencies (#5466, #5537)
+
+##### Docs
+
+- [docs] Add one more resource around the style migration (0d375d6271a2c65e6e608dde28ee4ca55defd81b)
+- [docs] Add a note regarding other properties (#5491)
+- [docs] Add redux-form in the Related projects section (3e10f203bc3a7d79f94011586c134b6e17a69016)
+- [docs] Add CReMa in the Related projects section (#5431)
+
+
+## 0.16.1
+###### _Oct 18, 2016_
+
+This is a small release improving the stability of `v0.16.x`.
+
+##### Component Fixes / Enhancements
+
+- [ClickAwayListener] Improve the propTypes definition (2d99b2d66f0a895389f61e866c8840abebcf2b72)
+- [DropDownMenu] Fix usage of null child (#5402)
+- [FloatingActionButton] Set touch flag in handleTouchEnd (#5077)
+- [FloatingActionButton] Fix overriding the style property on the children (#5246)
+- [IconMenu] Updating error message for IconButton (#5361)
+- [IconMenu] Makes the warning message more explicit (#5395)
+- [Menu] Fix the key theme used for the selectedTextColor (#5379)
+- [MenuItem] Add min-height to MenuItem to allow null options in SelectItem (11639b02e62cc60861582eb9c1516e1fe46d5ccb)
+- [Popover] Making sure Popover has correct position (#4839)
+- [Popover] Add missing animated=false (#5374)
+- [RadioButtonGroup] Modifying `selected` initial value check to account for falsy value (#5342)
+- [RaisedButton] Add a overlayStyle property (c16147d9eb81a69a82f88d21fb0d7a356b95e2af)
+- [RefreshIndicator] Fix Unknown props react warning (#5356)
+- [Tabs] Add tabTemplateStyle prop to Tabs (#5359)
+- [TableFooter] Render the children independently of adjustForCheckbox (#5406)
+- [TableRowColumn] Revert Tooltip visible with TableRowColumn (#5378)
+- [TextField] Fix a failing test with the controlled behavior (#5351)
+- [TextField] Fix leaking appearance property on a div (#5412)
+- [withWidth] Fix the SSR reconciliation (#5405)
+
+##### Core
+
+- [GitHub] Improve ISSUE_TEMPLATE to ask for a running snippet (#5388)
+- [npm] Upgrade the dependencies (#5404)
+
+##### Docs
+
+- [docs] Add LireLactu to the showcase (#5336)
+- [docs] Document the muiThemeable HOC (#5363)
+- [docs] Fix non-compiling example code on Themes page (#5344)
+
+
+## 0.16.0
+###### _Oct 3, 2016_
+
+This release contains a ton of bug fixes and small improvements :boom:.
+
+We have **shifted goals** for `v0.16.0`.
+Across a number of issues over the last ~5 months we have been telling people that certain improvements are coming in `v0.16.0` ranging from performance to component API issues and more.
+Those improvements are coming with the `next` branch :sparkles:.
+We are switching in goal so we can release changes more **often**.
+
+Regarding going forward, this is likely to be the last `minor` release using the **inline-style** approach.
+We are migrating all the components to a **CSS-in-JS** approach on the `next` branch.
+
+For more details, you can have a look a the [next milestone](https://github.com/callemall/material-ui/milestone/14) as well as the [next project](https://github.com/callemall/material-ui/projects/1)
+
+:warning: New features based on the `master` branch (inline-style) have low priority and will most likely not be reviewed nor merged.
+
+##### Component Fixes / Enhancements
+
+- [Card] Fix unused property subtitleColor (#5314)
+
+##### Core
+
+- [Core] Use lodash.merge/throttle for faster require() (#5308)
+
+##### Docs
+
+- [docs] Add a single line example for GridLists (#5313)
+- [docs] Add react-dnd (7e1d9d3d1d61a3ee8e6dbf57cd2261754a3285f3)
+- [docs] Add Casalova to the showcase (7c0df3be32813ddb003cd47b6529431f3cd41679)
+
+## 0.16.0-rc2
+###### _Sep 24, 2016_
+
+##### Breaking Changes
+
+- [TimePicker] Remove the call to onDismiss when already calling onAccept (#5213)
+
+##### Component Fixes / Enhancements
+
+- [AppBar] Fix onTouchTap handler (#5245)
 - [AutoComplete] Add popoverProps to pass to Popover (#5064)
 - [DatePicker] Improve the RTL support (#5155)
 - [DatePicker] Improve the i18n support (#5187)
+- [IconButton] Remove dead code (#5226)
 - [Popover] Fix a callback leak (#5158)
+- [TextField] Removed deprecated onEnterKeyDown prop
 - [RaisedButton] Add a buttonStyle property (#5196)
 - [Switch] Add thumbSwitchedStyle and trackSwitchedStyle (#5106)
-- [TimePicker] Fix clock pointer mark off centre of pointer line (#5195)
+- [Snackbar] Fix the element covering up 100% width of the screen (#5113)
+- [Snackbar] Add a contentStyle property (#5205)
+- [Tabs] Fix an edge case where children and value props change (#4635)
+- [Tabs] Fix onChange bubbling (#5219)
+- [TimePicker] Fix a conflict with box-sizing reset (5529138)
 - [withWidth] Compute the width as soon as possible (#5154)
 
 ##### Docs
 
+- [AppBar] Add a composition example (#5248)
 - [RaisedButton] Update file upload example (#5159)
-- [Docs] Add material-ui-chip-input to related projects (#5172)
+- [docs] Add material-ui-chip-input to related projects (#5172)
+- [docs] Add material-auto-rotating-carousel to related projects (#5244)
+- [docs] Explicit the prerequisites section to required knowledge (#5203)
+- [docs] Update the server-rendering section (#5206)
 
 ##### Core
 
+- [core] Add babel-runtime to the release (#5221)
+- [core] Use the ^15.0.0 as a dependency for React (#5207)
 - [npm] Upgrade the dependencies (#5161)
 
 ## 0.16.0-rc1

@@ -1,4 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import warning from 'warning';
 
 function getStyles(props, context) {
   const {
@@ -9,7 +11,6 @@ function getStyles(props, context) {
   return {
     root: {
       backgroundColor: table.backgroundColor,
-      padding: `0 ${baseTheme.spacing.desktopGutter}px`,
       width: '100%',
       borderCollapse: 'collapse',
       borderSpacing: 0,
@@ -148,6 +149,12 @@ class Table extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.allRowsSelected !== nextProps.allRowsSelected) {
+      this.setState({allRowsSelected: nextProps.allRowsSelected});
+    }
+  }
+
   isScrollbarVisible() {
     const tableDivHeight = this.refs.tableDiv.clientHeight;
     const tableBodyHeight = this.refs.tableBody.clientHeight;
@@ -179,7 +186,6 @@ class Table extends Component {
         onRowHoverExit: this.onRowHoverExit,
         onRowSelection: this.onRowSelection,
         selectable: this.props.selectable,
-        style: Object.assign({height: this.props.height}, base.props.style),
       }
     );
   }
@@ -209,8 +215,13 @@ class Table extends Component {
   };
 
   onRowSelection = (selectedRows) => {
-    if (this.state.allRowsSelected) this.setState({allRowsSelected: false});
-    if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
+    if (this.state.allRowsSelected) {
+      this.setState({allRowsSelected: false});
+    }
+
+    if (this.props.onRowSelection) {
+      this.props.onRowSelection(selectedRows);
+    }
   };
 
   onSelectAll = () => {
@@ -255,6 +266,10 @@ class Table extends Component {
         tHead = this.createTableHeader(child);
       } else if (muiName === 'TableFooter') {
         tFoot = this.createTableFooter(child);
+      } else {
+        warning(false,
+          `Material-UI: Children of the Table component must be TableBody or TableHeader or TableFooter.
+           Nothing is rendered.`);
       }
     });
 

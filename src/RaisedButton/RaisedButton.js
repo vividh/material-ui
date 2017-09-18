@@ -1,7 +1,7 @@
-import React, {Component, cloneElement, PropTypes} from 'react';
+import React, {Component, cloneElement} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
-import {createChildFragment} from '../utils/childUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 import Paper from '../Paper';
 
@@ -18,6 +18,7 @@ function getStyles(props, context, state) {
     baseTheme,
     button,
     raisedButton,
+    borderRadius,
   } = context.muiTheme;
 
   const {
@@ -57,7 +58,6 @@ function getStyles(props, context, state) {
   }
 
   const buttonHeight = style && style.height || button.height;
-  const borderRadius = 2;
 
   return {
     root: {
@@ -66,12 +66,11 @@ function getStyles(props, context, state) {
       minWidth: fullWidth ? '100%' : button.minWidth,
     },
     button: {
-      position: 'relative',
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
       width: '100%',
       padding: 0,
-      borderRadius: borderRadius,
+      borderRadius,
       transition: transitions.easeOut(),
       backgroundColor: backgroundColor,
       // That's the default value for a button but not a link
@@ -97,7 +96,7 @@ function getStyles(props, context, state) {
     },
     overlay: {
       height: buttonHeight,
-      borderRadius: borderRadius,
+      borderRadius,
       backgroundColor: (state.keyboardFocused || state.hovered) && !disabled &&
         fade(labelColor, amount),
       transition: transitions.easeOut(),
@@ -134,6 +133,21 @@ class RaisedButton extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+      * The element to use as the container for the RaisedButton. Either a string to
+      * use a DOM element or a ReactElement. This is useful for wrapping the
+      * RaisedButton in a custom Link component. If a ReactElement is given, ensure
+      * that it passes all of its given props through to the underlying DOM
+      * element and renders its children prop for proper integration.
+      */
+    containerElement: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ]),
+    /**
+     * If true, the element's ripple effect will be disabled.
+     */
+    disableTouchRipple: PropTypes.bool,
     /**
      * If true, the button will be disabled.
      */
@@ -180,6 +194,12 @@ class RaisedButton extends Component {
      * Override the inline-styles of the button's label element.
      */
     labelStyle: PropTypes.object,
+    /**
+     * Callback function fired when the button is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the button.
+     */
+    onClick: PropTypes.func,
     /** @ignore */
     onMouseDown: PropTypes.func,
     /** @ignore */
@@ -192,6 +212,10 @@ class RaisedButton extends Component {
     onTouchEnd: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
+    /**
+     * Override the inline style of the button overlay.
+     */
+    overlayStyle: PropTypes.object,
     /**
      * If true, the button will use the theme's primary color.
      */
@@ -311,6 +335,7 @@ class RaisedButton extends Component {
 
   handleTouchEnd = (event) => {
     this.setState({
+      touched: true,
       zDepth: this.state.initialZDepth,
     });
 
@@ -343,11 +368,12 @@ class RaisedButton extends Component {
       labelColor, // eslint-disable-line no-unused-vars
       labelPosition,
       labelStyle,
+      overlayStyle,
       primary, // eslint-disable-line no-unused-vars
       rippleStyle,
       secondary, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -365,7 +391,7 @@ class RaisedButton extends Component {
     };
 
     const labelElement = label && (
-      <span style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+      <span style={prepareStyles(Object.assign(styles.label, labelStyle))} key="labelElement">
         {label}
       </span>
     );
@@ -373,21 +399,20 @@ class RaisedButton extends Component {
     const iconCloned = icon && cloneElement(icon, {
       color: icon.props.color || styles.label.color,
       style: Object.assign(styles.icon, icon.props.style),
+      key: 'iconCloned',
     });
 
     // Place label before or after children.
-    const childrenFragment = labelPosition === 'before' ?
-    {
+    const enhancedButtonChildren = labelPosition === 'before' ?
+    [
       labelElement,
       iconCloned,
       children,
-    } : {
+    ] : [
       children,
       iconCloned,
       labelElement,
-    };
-
-    const enhancedButtonChildren = createChildFragment(childrenFragment);
+    ];
 
     return (
       <Paper
@@ -408,7 +433,7 @@ class RaisedButton extends Component {
         >
           <div
             ref="overlay"
-            style={prepareStyles(styles.overlay)}
+            style={prepareStyles(Object.assign(styles.overlay, overlayStyle))}
           >
             {enhancedButtonChildren}
           </div>

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
@@ -66,6 +67,10 @@ class DatePicker extends Component {
      */
     formatDate: PropTypes.func,
     /**
+     * Hide date display
+     */
+    hideCalendarDate: PropTypes.bool,
+    /**
      * Locale used for formatting the `DatePicker` date strings. Other than for 'en-US', you
      * must provide a `DateTimeFormat` that supports the chosen `locale`.
      */
@@ -97,6 +102,12 @@ class DatePicker extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * Callback function that is fired when a touch tap event occurs on the Date Picker's `TextField`.
+     *
+     * @param {object} event TouchTap event targeting the `TextField`.
+     */
+    onClick: PropTypes.func,
+    /**
      * Callback function that is fired when the Date Picker's dialog is dismissed.
      */
     onDismiss: PropTypes.func,
@@ -109,11 +120,9 @@ class DatePicker extends Component {
      */
     onShow: PropTypes.func,
     /**
-     * Callback function that is fired when a touch tap event occurs on the Date Picker's `TextField`.
-     *
-     * @param {object} event TouchTap event targeting the `TextField`.
+     * If true sets the datepicker to open to year selection first.
      */
-    onTouchTap: PropTypes.func,
+    openToYearSelection: PropTypes.bool,
     /**
      * Callback function used to determine if a day's entry should be disabled on the calendar.
      *
@@ -130,6 +139,15 @@ class DatePicker extends Component {
      */
     textFieldStyle: PropTypes.object,
     /**
+     * This object should contain methods needed to build the calendar system.
+     *
+     * Useful for building a custom calendar system. Refer to the
+     * [source code](https://github.com/callemall/material-ui/blob/master/src/DatePicker/dateUtils.js)
+     * and an [example implementation](https://github.com/alitaheri/material-ui-persian-date-picker-utils)
+     * for more information.
+     */
+    utils: PropTypes.object,
+    /**
      * Sets the date for the Date Picker programmatically.
      */
     value: PropTypes.object,
@@ -141,7 +159,9 @@ class DatePicker extends Component {
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
+    hideCalendarDate: false,
     style: {},
+    openToYearSelection: false,
   };
 
   static contextTypes = {
@@ -219,8 +239,8 @@ class DatePicker extends Component {
   };
 
   handleTouchTap = (event) => {
-    if (this.props.onTouchTap) {
-      this.props.onTouchTap(event);
+    if (this.props.onClick) {
+      this.props.onClick(event);
     }
 
     if (!this.props.disabled) {
@@ -273,11 +293,14 @@ class DatePicker extends Component {
       onDismiss,
       onFocus, // eslint-disable-line no-unused-vars
       onShow,
-      onTouchTap, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
+      openToYearSelection,
       shouldDisableDate,
+      hideCalendarDate,
       style,
       textFieldStyle,
-      ...other,
+      utils,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -288,7 +311,7 @@ class DatePicker extends Component {
         <TextField
           {...other}
           onFocus={this.handleFocus}
-          onTouchTap={this.handleTouchTap}
+          onClick={this.handleTouchTap}
           ref="input"
           style={textFieldStyle}
           value={this.state.date ? formatDate(this.state.date) : ''}
@@ -312,6 +335,9 @@ class DatePicker extends Component {
           onDismiss={onDismiss}
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
+          hideCalendarDate={hideCalendarDate}
+          openToYearSelection={openToYearSelection}
+          utils={utils}
         />
       </div>
     );

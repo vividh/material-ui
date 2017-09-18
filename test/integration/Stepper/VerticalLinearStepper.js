@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {
   Step,
   Stepper,
@@ -9,8 +10,9 @@ import RaisedButton from 'src/RaisedButton';
 import FlatButton from 'src/FlatButton';
 
 class VerticalLinearStepper extends Component {
-
-  static contextTypes = {muiTheme: PropTypes.object.isRequired};
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
 
   state = {
     finished: false,
@@ -37,7 +39,7 @@ class VerticalLinearStepper extends Component {
           disableTouchRipple={true}
           disableFocusRipple={true}
           primary={true}
-          onTouchTap={this.handleNext}
+          onClick={this.handleNext}
           style={{marginRight: 12}}
         />
         {step > 0 && (
@@ -46,7 +48,7 @@ class VerticalLinearStepper extends Component {
             disabled={stepIndex === 0}
             disableTouchRipple={true}
             disableFocusRipple={true}
-            onTouchTap={this.handlePrev}
+            onClick={this.handlePrev}
           />
         )}
       </div>

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 import Paper from '../Paper';
@@ -303,7 +304,12 @@ class RefreshIndicator extends Component {
   render() {
     const {
       style,
-      ...other,
+      top, // eslint-disable-line no-unused-vars
+      left, // eslint-disable-line no-unused-vars
+      percentage, // eslint-disable-line no-unused-vars
+      status, // eslint-disable-line no-unused-vars
+      loadingColor, // eslint-disable-line no-unused-vars
+      ...other
     } = this.props;
 
     const styles = getStyles(this.props, this.context);

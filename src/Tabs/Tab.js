@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, context) {
@@ -28,6 +29,10 @@ class Tab extends Component {
 
   static propTypes = {
     /**
+     * Override the inline-styles of the button element.
+     */
+    buttonStyle: PropTypes.object,
+    /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
@@ -54,7 +59,7 @@ class Tab extends Component {
      * @ignore
      * This property is overriden by the Tabs component.
      */
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     /**
      * @ignore
      * Defines if the current tab is selected or not.
@@ -82,8 +87,8 @@ class Tab extends Component {
   };
 
   handleTouchTap = (event) => {
-    if (this.props.onTouchTap) {
-      this.props.onTouchTap(this.props.value, event, this);
+    if (this.props.onClick) {
+      this.props.onClick(this.props.value, event, this);
     }
   };
 
@@ -92,31 +97,28 @@ class Tab extends Component {
       icon,
       index, // eslint-disable-line no-unused-vars
       onActive, // eslint-disable-line no-unused-vars
-      onTouchTap, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
       label,
+      buttonStyle,
       style,
       value, // eslint-disable-line no-unused-vars
       width, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const styles = getStyles(this.props, this.context);
 
     let iconElement;
     if (icon && React.isValidElement(icon)) {
-      const iconProps = {
+      iconElement = React.cloneElement(icon, {
         style: {
           fontSize: 24,
-          color: styles.root.color,
+          color: (icon.props && icon.props.style && icon.props.style.color) ?
+            icon.props.style.color : styles.root.color,
           marginBottom: label ? 5 : 0,
         },
-      };
-      // If it's svg icon set color via props
-      if (icon.type.muiName !== 'FontIcon') {
-        iconProps.color = styles.root.color;
-      }
-      iconElement = React.cloneElement(icon, iconProps);
+      });
     }
 
     const rippleOpacity = 0.3;
@@ -130,9 +132,9 @@ class Tab extends Component {
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}
         touchRippleOpacity={rippleOpacity}
-        onTouchTap={this.handleTouchTap}
+        onClick={this.handleTouchTap}
       >
-        <div style={styles.button} >
+        <div style={Object.assign(styles.button, buttonStyle)} >
           {iconElement}
           {label}
         </div>

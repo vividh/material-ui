@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Title from 'react-title-component';
 import MarkdownElement from '../../MarkdownElement';
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -220,7 +221,7 @@ class ThemesPage extends Component {
         </div>
         <div style={styles.group}>
           <div style={styles.containerCentered}>
-            <FlatButton label="View Dialog" onTouchTap={this.handleTouchTapDialog} />
+            <FlatButton label="View Dialog" onClick={this.handleTouchTapDialog} />
             <Dialog
               open={this.state.dialogOpen}
               title="Dialog With Standard Actions"
@@ -228,12 +229,12 @@ class ThemesPage extends Component {
                 <FlatButton
                   label="Cancel"
                   keyboardFocused={true}
-                  onTouchTap={this.handleRequestCloseDialog}
+                  onClick={this.handleRequestCloseDialog}
                   primary={true}
                 />,
                 <FlatButton
                   label="Submit"
-                  onTouchTap={this.handleRequestCloseDialog}
+                  onClick={this.handleRequestCloseDialog}
                   primary={true}
                 />,
               ]}
@@ -246,7 +247,7 @@ class ThemesPage extends Component {
         <div style={styles.group}>
           <div style={styles.containerCentered}>
             <FlatButton
-              onTouchTap={this.handleTouchTapDrawer}
+              onClick={this.handleTouchTapDrawer}
               label="View Drawer"
             />
             <Drawer
@@ -261,7 +262,7 @@ class ThemesPage extends Component {
         <div style={styles.group}>
           <div style={styles.containerCentered}>
             <FlatButton
-              onTouchTap={this.handleTouchTapSnackbar}
+              onClick={this.handleTouchTapSnackbar}
               label="View Snackbar"
             />
           </div>

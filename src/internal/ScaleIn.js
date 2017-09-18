@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import ReactTransitionGroup from 'react-addons-transition-group';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 import ScaleInChild from './ScaleInChild';
 
 class ScaleIn extends Component {
@@ -31,14 +32,13 @@ class ScaleIn extends Component {
       maxScale,
       minScale,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
 
     const mergedRootStyles = Object.assign({}, {
       position: 'relative',
-      overflow: 'hidden',
       height: '100%',
     }, style);
 

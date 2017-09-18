@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -92,7 +93,7 @@ class HomePage extends Component {
           <RaisedButton
             className="demo-button"
             label="Demo"
-            onTouchTap={this.handleTouchTapDemo}
+            onClick={this.handleTouchTapDemo}
             style={styles.demoStyle}
             labelStyle={styles.label}
           />

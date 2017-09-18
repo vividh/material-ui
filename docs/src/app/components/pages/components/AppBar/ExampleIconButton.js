@@ -5,7 +5,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
 
 function handleTouchTap() {
-  alert('onTouchTap triggered on the title component');
+  alert('onClick triggered on the title component');
 }
 
 const styles = {
@@ -14,6 +14,10 @@ const styles = {
   },
 };
 
+/**
+ * This example uses an [IconButton](/#/components/icon-button) on the left, has a clickable `title`
+ * through the `onClick` property, and a [FlatButton](/#/components/flat-button) on the right.
+ */
 const AppBarExampleIconButton = () => (
   <AppBar
     title={<span style={styles.title}>Title</span>}
